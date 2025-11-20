@@ -1,9 +1,9 @@
 {
-  "name": "url-shortener-umair",
+  "name": "umair-url-shortener",
   "version": "1.0.0",
-  "type": "module",
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js"
+    "dev": "echo 'HTML Site - Ready'",
+    "build": "echo 'Build complete'", 
+    "start": "echo 'Site is live'"
   }
 }
