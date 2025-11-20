@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umair URL Shortener</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 { color: #333; margin-bottom: 10px; }
+        .description { color: #666; margin-bottom: 30px; }
+        input, button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .result { 
+            margin-top: 20px; 
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        .admin-link {
+            display: block;
+            margin-top: 20px;
+            color: #667eea;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 Umair URL Shortener</h1>
+        <p class="description">Create short links instantly - Free Forever</p>
+        
+        <form onsubmit="shortenUrl(event)">
+            <input type="url" id="longUrl" placeholder="https://example.com/very-long-url" required>
+            <input type="text" id="customSlug" placeholder="Custom name (optional)">
+            <button type="submit">🚀 Shorten URL</button>
+        </form>
+        
+        <div class="result" id="result">
+            <p>✅ Your short URL:</p>
+            <div id="shortUrl" style="color: #667eea; font-weight: bold; margin: 10px 0; word-break: break-all;"></div>
+            <button onclick="copyToClipboard()" style="background: #28a745;">📋 Copy URL</button>
+        </div>
+
+        <a href="/admin.html" class="admin-link">🔐 Admin Panel</a>
+    </div>
+
+    <script>
+        function shortenUrl(event) {
+            event.preventDefault();
+            const longUrl = document.getElementById('longUrl').value;
+            const customSlug = document.getElementById('customSlug').value;
+            const slug = customSlug || Math.random().toString(36).substring(2, 8);
+            const shortUrl = `${window.location.origin}/${slug}`;
+            
+            document.getElementById('shortUrl').textContent = shortUrl;
+            document.getElementById('result').style.display = 'block';
+        }
+        
+        function copyToClipboard() {
+            const shortUrl = document.getElementById('shortUrl').textContent;
+            navigator.clipboard.writeText(shortUrl);
+            alert('✅ Copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
