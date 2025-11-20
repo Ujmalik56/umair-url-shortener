@@ -2,8 +2,8 @@
   "name": "umair-url-shortener",
   "version": "1.0.0",
   "scripts": {
-    "dev": "echo 'HTML Site - Ready'",
-    "build": "echo 'Build complete'", 
-    "start": "echo 'Site is live'"
+    "dev": "python3 -m http.server 3000",
+    "build": "echo 'Static site - no build needed' && mkdir -p public && cp *.html public/ 2>/dev/null || echo 'HTML files ready'",
+    "start": "python3 -m http.server 3000"
   }
 }
